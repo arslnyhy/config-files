@@ -115,8 +115,8 @@ alias dps='docker ps'
 alias gacp='git add . && git commit -m "cmt" && git push'
 
 # Python
-alias pve='python3 -m venv .env && source .env/bin/activate'
-alias ave='source /home/user/.env/bin/activate'
+alias pve='python3 -m venv .venv && source .venv/bin/activate'
+alias ave='source /home/user/.venv/bin/activate'
 alias dve='deactivate'
 alias p='python3'
 alias python='python3'
@@ -129,33 +129,19 @@ alias upup='sudo apt update; sudo apt upgrade -y'
 alias fix='sudo apt upgrade --fix-missing'
 
 # Other
-alias c='cursor'
+alias c='code'
 alias bat='batcat'
 alias fm='ranger'
 alias ff='fzf'
-alias s='sublime'
+alias kdenlive='flatpak run org.kde.kdenlive'
+alias zen='flatpak run app.zen_browser.zen'
+
 
 # Scripts
 alias cdown='~/scripts/cdown'
 alias githook='~/scripts/githook.sh'
 alias fix-corrupt='~/scripts/fix_zsh_corrupt.sh'
 
-# Work Stack
-alias mockitup='cd ~/mockit && docker compose up -d'
-alias mockitdown='cd ~/mockit && docker compose down'
-alias mockitrst='cd ~/mockit && docker compose restart'
-
-alias slurpitup='cd ~/images && docker compose up -d'
-alias slurpitdown='cd ~/images && docker compose down'
-alias slurpitrrst='cd ~/images && docker compose restart'
-
-alias netboxup='cd ~/slurpit_netbox && docker compose up -d'
-alias netboxdown='cd ~/slurpit_netbox && docker compose down'
-alias netboxrst='cd ~/slurpit_netbox && docker compose restart'
-
-alias netpickerup='cd ~/netpicker && docker compose up -d'
-alias netpickerdown='cd ~/netpicker && docker compose down'
-alias netpickerrst='cd ~/netpicker && docker compose restart'
 
 # Functions
 fvim() {
@@ -175,12 +161,17 @@ fbat() {
 
 fcod() {
   local file=$(find . -type f | fzf)
-  [[ -n "$file" ]] && cursor "$file"
+  [[ -n "$file" ]] && code "$file"
 }
 
 fsub() {
   local file=$(find . -type f | fzf)
-  [[ -n "$file" ]] && sublime "$file"
+  [[ -n "$file" ]] && subl "$file"
+}
+
+fzed() {
+  local file=$(find . -type f | fzf)
+  [[ -n "$file" ]] && zed "$file"
 }
 
 fcd() {
